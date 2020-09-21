@@ -9,10 +9,12 @@ import org.springframework.web.bind.annotation.RestController;
 @SpringBootApplication
 public class SecurityApplication {
 
+
     @GetMapping("/")
     public String hello(){
         return "hello,ss!";
     }
+
 
     public static void main(String[] args) {
         SpringApplication.run(SecurityApplication.class, args);
