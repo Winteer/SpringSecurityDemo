@@ -45,7 +45,7 @@ public class VerificationCodeFilter extends OncePerRequestFilter {
         HttpSession session = httpServletRequest.getSession();
         String saveCode = (String) session.getAttribute("captcha");
         if (!StringUtils.isEmpty(saveCode)) {
-            //随手清楚验证码，无论失败成功。客户端应在登陆失败时刷新验证码
+            //随手清除验证码，无论失败成功。客户端应在登陆失败时刷新验证码
             session.removeAttribute("captcha");
         }
         //校验不通过，抛出异常

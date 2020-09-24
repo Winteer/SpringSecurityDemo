@@ -1,5 +1,6 @@
 package com.winter.security.handler;
 
+import com.winter.security.exception.VerificationCodeException;
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.web.authentication.AuthenticationFailureHandler;
 
@@ -18,6 +19,6 @@ public class MyAuthenticationFailureHandler implements AuthenticationFailureHand
 
     @Override
     public void onAuthenticationFailure(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse, AuthenticationException e) throws IOException, ServletException {
-
+        throw new VerificationCodeException();
     }
 }

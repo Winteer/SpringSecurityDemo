@@ -38,19 +38,19 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         http.authorizeRequests()
                 .antMatchers("/admin/api/**").hasRole("ADMIN")
                 .antMatchers("user/api/**").hasRole("USER")
-                .antMatchers("/app/api/**", "/captcha.jpg").permitAll()
+                .antMatchers("/app/api/**", "/captcha/captcha.jpg").permitAll()
                 .anyRequest().authenticated()
                 .and()
                 .csrf().disable()
                 .formLogin()
                 .loginPage("/myLogin.html")
                 .loginProcessingUrl("/auth/form").permitAll()
+//                .loginProcessingUrl("/login").permitAll()
                 .failureHandler(new MyAuthenticationFailureHandler())
-//                .loginProcessingUrl("/login")
-//                .permitAll()
                 .and()
                 .sessionManagement()
                 .maximumSessions(1);
+        //认证前进行验证码验证
         http.addFilterBefore(new VerificationCodeFilter(), UsernamePasswordAuthenticationFilter.class);
     }
 
